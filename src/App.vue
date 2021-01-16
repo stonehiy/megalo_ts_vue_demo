@@ -1,52 +1,56 @@
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component } from "vue-property-decorator";
 
-declare module 'megalo/types/vue' {
+declare module "megalo/types/vue" {
   interface Vue {
-    $mp: any
+    $mp: any;
   }
 }
 
 // https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/app.html
 Component.registerHooks([
-  'onLaunch', // 初始化
-  'onShow', // 当小程序启动，或从后台进入前台显示
-  'onHide', // 当小程序从前台进入后台
-  'onError', // 错误监听函数
-  'onPageNotFound', // 页面不存在监听函数
-  'globalData'
-])
+  "onLaunch", // 初始化
+  "onShow", // 当小程序启动，或从后台进入前台显示
+  "onHide", // 当小程序从前台进入后台
+  "onError", // 错误监听函数
+  "onPageNotFound", // 页面不存在监听函数
+  "globalData",
+]);
 
 @Component({
-  mpType: 'app'
+  mpType: "app",
 } as any)
 class App extends Vue {
-  onLaunch (options) {
+  onLaunch(options) {
     // Do something initial when launch.
-    console.log('App onLaunch, env文件自定义的环境变量VUE_APP_TEST值:', process.env.VUE_APP_TEST)
+    console.log(
+      "App onLaunch, env文件自定义的环境变量VUE_APP_TEST值:",
+      process.env.VUE_APP_TEST
+    );
   }
 
-  onShow (options) {
+  onShow(options) {
     // Do something when show.
-    console.log('App onShow')
+    console.log("App onShow");
   }
 
-  onHide () {
+  onHide() {
     // Do something when hide.
-    console.log('App onHide')
+    console.log("App onHide");
   }
 
-  onError (msg) {
-    console.log('App onError')
-    console.log(msg)
+  onError(msg) {
+    console.log("App onError");
+    console.log(msg);
   }
 
-  globalData () {
+  globalData() {
     return {
-      a: 'I am global data'
-    }
+      a: "I am global data",
+    };
   }
 }
 
-export default App
+export default App;
 </script>
+

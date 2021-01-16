@@ -27,7 +27,7 @@ export default class My extends Vue {
   created() {
     console.log("Page [my] Vue created");
     const appInstance: any = getApp();
-    console.log(appInstance.globalData); // I am global data
+    console.log("appInstance->",appInstance.globalData); // I am global data
   }
 
   beforeMount() {

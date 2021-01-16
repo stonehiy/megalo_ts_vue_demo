@@ -32,9 +32,12 @@ export default {
   config: {
     // pages 的首个页面会被编译成首页
     pages: [
+      'pages/ts/tsHome',
       'pages/hello',
       'pages/my/my',
-      'pages/vuex/vuex'
+      'pages/vuex/vuex',
+      'pages/ts/learn/tsInterface',
+      
     ],
     tabBar: {
       color: '#333',
@@ -57,14 +60,35 @@ export default {
           text: 'vuex',
           iconPath: 'native/tabbar/vue.png',
           selectedIconPath: 'native/tabbar/vue_on.png'
+        },
+        {
+          pagePath: 'pages/ts/tsHome',
+          text: 'TSHome',
+          iconPath: 'native/tabbar/vue.png',
+          selectedIconPath: 'native/tabbar/vue_on.png'
         }
       ]
     },
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
+      navigationBarBackgroundColor: '#32db95',
       navigationBarTitleText: 'megalo typescript project',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'white',
+      backgroundColor:'#eeeeee'
+    },
+
+    // 支付宝小程序配置
+    _alipay: {
+      window: {
+        navigationBarTitleText: 'Alipay'
+      }
+    },
+
+    // 百度小程序配置
+    _swan: {
+      window: {
+        navigationBarTitleText: 'Baidu'
+      }
     }
   }
 }
