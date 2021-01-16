@@ -19,4 +19,5 @@ declare module 'megalo/types/vue' {
  // 全局变量设置
 declare global {
   const Megalo: typeof Megalo
+
 }
