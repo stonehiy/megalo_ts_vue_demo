@@ -10,7 +10,12 @@
 
 <template>
   <div class="ts_home">
-    <div class="item flex" v-for="item in items" v-bind:key="item">
+    <div
+      class="item flex"
+      v-for="item in items"
+      v-bind:key="item"
+      @click="onClickItem(item)"
+    >
       <div class="item_bg flex">
         <div>{{ item.name }}</div>
       </div>
@@ -20,7 +25,6 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-//import {Megalo} from '@megalo/api'
 
 @Component({
   components: {},
@@ -54,7 +58,6 @@ export default class TSHome extends Vue {
    */
   onLoad(options) {
     this.normalMethod();
-    //Megalo.navigateToMiniProgram({path:'pages/ts/learn/tsInterface'});
   }
 
   /**
@@ -65,6 +68,13 @@ export default class TSHome extends Vue {
     console.log("Page [TsHome] num = ", this.num);
     console.log("Page [TsHome] name = ", this.name);
     console.log("Page [TsHome] list = ", this.list);
+  }
+
+  onClickItem(item) {
+    console.log("Megalo -> ",Megalo)
+    Megalo.navigateTo({ url: "/pages/ts/learn/tsInterface" })
+   
+    
   }
 }
 </script>
