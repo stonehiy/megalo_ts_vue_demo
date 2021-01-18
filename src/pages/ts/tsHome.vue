@@ -25,6 +25,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import request from "../../utils/request";
 
 @Component({
   components: {},
@@ -58,6 +59,7 @@ export default class TSHome extends Vue {
    */
   onLoad(options) {
     this.normalMethod();
+    this.goBaidu();
   }
 
   /**
@@ -70,11 +72,28 @@ export default class TSHome extends Vue {
     console.log("Page [TsHome] list = ", this.list);
   }
 
-  onClickItem(item) {
-    console.log("Megalo -> ",Megalo)
-    Megalo.navigateTo({ url: "/pages/ts/learn/tsInterface" })
-   
-    
+  onClickItem(item: { id: number; name: string }) {
+    console.log("Megalo -> ", Megalo);
+
+    if (item.id == 0) {
+      Megalo.navigateTo({ url: "/pages/ts/learn/tsInterface" });
+    } else if (item.id == 1) {
+      this.goWxarticleChapters();
+    } else {
+      this.goBaidu();
+    }
+  }
+
+  async goBaidu() {
+    await request({
+      url: "https://m.baidu.com/",
+    });
+  }
+
+  async goWxarticleChapters() {
+    await request({
+      url: "https://wanandroid.com/wxarticle/chapters/json",
+    });
   }
 }
 </script>
