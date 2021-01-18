@@ -1,5 +1,16 @@
 // 增加拦截器
 initInterceptors();
+
+function showLoading(msg: string = "加载中...") {
+  Megalo.showLoading({
+    title: msg,
+  });
+}
+
+function hideLoading() {
+  Megalo.hideLoading();
+}
+
 function initInterceptors(): void {
   Megalo.request.interceptors.before.use(
     (options) => {
@@ -29,7 +40,13 @@ function initInterceptors(): void {
   );
 }
 
-function request<T>(params: RequestParams): Promise<Result<T>> {
+function request<T>(
+  params: RequestParams,
+  isLoading: boolean = true
+): Promise<Result<T>> {
+  if (isLoading) {
+    showLoading();
+  }
   return new Promise<Result<T>>((reslove, reject) => {
     Megalo.request({
       url: params.url,
@@ -40,24 +57,18 @@ function request<T>(params: RequestParams): Promise<Result<T>> {
     })
       .then((res) => {
         console.log("Megalo.request res = ", res.data);
+        if (isLoading) {
+          hideLoading();
+        }
         reslove(res.data);
       })
       .catch((err) => {
+        if (isLoading) {
+          hideLoading();
+        }
         reject(err);
       });
   });
-
-  // return Megalo.request({
-  //   url: params.url,
-  //   method: params.method,
-  //   data: params.data,
-  //   header: params.header,
-  //   cancelToken: params.cancelToken,
-  // });
-  // .then(res=>{
-  //   console.log("Megalo.request res = ", res.data);
-  //  return Promise.resolve(res.data)
-  // })
 }
 
 class RequestParams {
@@ -68,11 +79,10 @@ class RequestParams {
   cancelToken?: any;
 }
 
-export class Result<T> {
+class Result<T> {
   data: T;
-  errorCode:number = 0
-  errorMsg:string = ''
-  
+  errorCode: number = 0;
+  errorMsg: string = "";
 }
 
 //const source = Megalo.CancelToken.source();
