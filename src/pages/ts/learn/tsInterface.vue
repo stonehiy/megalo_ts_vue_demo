@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      {{ config.color }}
+      {{ config.color }} 
     </div>
     <div>
       {{ config.width }}
