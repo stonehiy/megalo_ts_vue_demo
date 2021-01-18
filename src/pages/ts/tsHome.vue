@@ -24,6 +24,7 @@
 </template>
 
 <script lang="ts">
+import { type } from "os";
 import { Vue, Component } from "vue-property-decorator";
 import request from "../../utils/request";
 
@@ -59,7 +60,7 @@ export default class TSHome extends Vue {
    */
   onLoad(options) {
     this.normalMethod();
-    this.goBaidu();
+    //this.goBaidu();
   }
 
   /**
@@ -85,16 +86,28 @@ export default class TSHome extends Vue {
   }
 
   async goBaidu() {
-    await request({
-      url: "https://m.baidu.com/",
-    });
+    // await request({
+    //   url: "https://m.baidu.com/",
+    // });
   }
 
-  async goWxarticleChapters() {
-    await request({
+  goWxarticleChapters() {
+    request<Array<DA>>({
       url: "https://wanandroid.com/wxarticle/chapters/json",
+    }).then((res) => {
+        console.log("goWxarticleChapters res = " + res);
+      console.log("goWxarticleChapters res1 = " + res[0].id);
+      console.log("goWxarticleChapters res1 = " + res[0].name);
+      console.log(
+        "goWxarticleChapters res = " + typeof JSON.stringify(res)
+      );
     });
   }
+}
+
+class DA {
+  id: string;
+  name: string;
 }
 </script>
 
